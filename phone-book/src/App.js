@@ -1,26 +1,19 @@
 import React, { Component } from 'react';
+import PhoneForm from './PhoneForm';
 
-class PhoneForm extends Component {
-  state = {
-    name: ''
-  }
-  handleChange = (e) => {
-    this.setState({
-      name: e.target.value
-    })
+class App extends Component {
+  handleCreate = (data) => {
+    console.log(data);
   }
   render() {
     return (
-      <form>
-        <input
-          placeholder="이름"
-          value={this.state.name}
-          onChange={this.handleChange}
+      <div>
+        <PhoneForm
+          onCreate={this.handleCreate}
         />
-        <div>{this.state.name}</div>
-      </form>
+      </div>
     );
   }
 }
 
-export default PhoneForm;
+export default App;
