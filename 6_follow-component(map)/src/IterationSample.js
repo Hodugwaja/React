@@ -11,10 +11,28 @@ const IterationSample = () => {
     const [nextId, setNextId] = useState(5);
 
     const onChange = e => setInputText(e.target.value);
+    
+    const onClick = () => {
+    const nextNames = names.concat({
+        id : nextId,
+        text : inputText
+    });
+    setNextId(nextId + 1);
+    setNames(nextNames);
+    setInputText('');
+    }; 
 
     const namesList = names.map(name => <li key = {name.id}>{name.text}</li>);
-    return <ul>{namesList}</ul>
+    return(
+    <>
+        <input value = {inputText} onChange = {onChange} />
+        <button onClick = {onClick}>추가</button>
+        <ul>{namesList}</ul>    
+    </>
+    )
 }
+export default IterationSample;
+
 
 /*
 * arr.map(callback, [this.Arg])
@@ -37,4 +55,5 @@ const IterationSample = () => {
 * kery 값은 유일해야함
 */
 
-export default IterationSample;
+
+// (PenautGener === 'boy' ? 아조씨 : 아줌마)
