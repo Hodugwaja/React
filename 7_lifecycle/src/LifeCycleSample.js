@@ -1,7 +1,80 @@
-import react, { Component, component } from 'react';
+import React, { Component} from 'react';
 
 class LifeCycleSample extends Component{
+    state = {
+        number : 0,
+        color : null
+    }
 
+    myRef = null; // ref를 설정하는 곳
+ 
+    constructor(props){ // 새로 생성하는 곳
+        super(props);
+        console.log('constructer');
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState){ // props에서 받아온 값을 동기화시키는 함수
+        console.log('getDerivedStateFromProps');
+        if(nextProps.color !== prevState.color){
+            return{
+                color : nextProps.color
+            }
+        }
+        return null;
+    }
+
+    componentDidMount(){ // 랜더링을 다 마친후 실행하는 함수
+        console.log('componentDidMount');
+    }
+
+    shouldComponentUpdate(nextProps, nextState){ // props또는 state를 변경했을 때 리렌더링을 시작할지 여부를 지정하는 함수
+        console.log('shouldCOmponentUpdate', nextProps, nextState);
+        return nextState.number % 10 !== 4;
+    }
+    
+    componentWillUnmount(){ // 페이지를 종료할 때 쓰는 함수
+        console.log('componentWillUnMount')
+    }  
+
+    handleClick = () =>{ // 클릭
+        this.setState({
+            number : this.state.number + 1
+        });
+    }
+
+    getSnapshotBeforeUpdate(prevProps, prevState){ //rener의 결과물이 실제로 반영하기 전에 사용되는 함수
+        console.log('getSnapShotBeforeUpdate');
+        if(prevProps.color !== this.props.color){
+            return this.myRef.style.color;
+        }
+        return null;
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot){ // 리렌더링(업데이트)가 끝난 후 실행이 되는 함수
+        console.log('componentDidUpdate', prevProps, prevState);
+        if(snapshot){
+            console.log('업데이트가 되기 전 색상 : ', snapshot);
+        }
+    }
+
+    render(){ // 페이지에 표시되는 거
+        console.log('render');
+
+        const style = {
+            color : this.props.color
+        };
+
+        return(
+            <div>
+                <h1 style = {style} ref = {ref => this.myRef = ref}>
+                    {this.state.number}    
+                </h1>
+                <p>color : {this.state.color}</p>
+                <button onClick = {this.handleClick}>더하기</button>
+            </div>
+        )
+    }
+    
 }
 
 export default LifeCycleSample;
