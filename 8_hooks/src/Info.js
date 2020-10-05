@@ -45,4 +45,7 @@ export default Info;
 /*
 * useEffect
 * 리엑트 컴포넌트가 렌더링 될때마다 특정 작업을 수행하도록 설정할 수 있는 Hook
+* 마운트 될때만 실행하려면 비어있는 배열을 넣으면 된다 console.log('렌더링이 완료되었습니다!',[])
+* 특정값이 업데이트 될때만 실행시 componentDidUpdate(prevProps, prevState){ if(prevProps.value !==this.props.value){doSomething();}} 그리고 배열에 name을 넣기
 */
+
