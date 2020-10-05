@@ -1,0 +1,21 @@
+// 변수 사용
+$red : #fa5252;
+$orange : #fd7e14;
+$yellow : #fcc419;
+$green : #40c057;
+$blue : #339af0;
+$indigio : #5c7cfa;
+$violet : #7950f2;
+
+// 믹스인 : 재사용되는 스타일 블록을 함수형으로 재사용할 수 있음
+
+@mixin square($size) {
+    $calculated : 32px * $size;
+    width : $calculated;
+    height: $calculated;
+}
+/*
+* SASS 변수 및 믹스인은 다른파일로 따로 분리하여 작성한 뒤 필요한 곳에 쉽게 불러와 사용할 수 있다
+* 다음과 같이 uitls.scss에 sassComponent.scss에 있는 변수및 믹스인을 가져오고
+* sassComponent에 uitls.scss를 import를 하는 방식으로 하면된다
+*/
