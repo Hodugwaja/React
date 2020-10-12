@@ -871,7 +871,7 @@ var divToogle = document.querySelector('.toogle');
 var counter = document.querySelector('h1');
 var btnIncrease = document.querySelector('#increase');
 var btnDecrease = document.querySelector('#decrease');
-var TOOGLE_SWITCH = 'TOOGLE_SWITCH';
+var TOOGLE_SWITCH = 'TOGLE_SWITCH';
 var INCREASE = 'INCREASE';
 var DECREASE = 'DECREASE';
 
@@ -881,7 +881,7 @@ var toogleSwitch = function toogleSwitch() {
   };
 };
 
-var increase = function increase() {
+var increase = function increase(difference) {
   return {
     type: INCREASE,
     difference: difference
@@ -911,7 +911,7 @@ function reducer() {
 
     case INCREASE:
       return _objectSpread(_objectSpread({}, state), {}, {
-        counter: state.counter + 1
+        counter: state.counter + action.difference
       });
 
     case DECREASE:
@@ -995,7 +995,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "3490" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "5612" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

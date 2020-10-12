@@ -5,19 +5,19 @@ const counter = document.querySelector('h1');
 const btnIncrease = document.querySelector('#increase');
 const btnDecrease = document.querySelector('#decrease');
 
-const TOOGLE_SWITCH = 'TOOGLE_SWITCH';
+const TOOGLE_SWITCH = 'TOGLE_SWITCH';
 const INCREASE = 'INCREASE';
 const DECREASE = 'DECREASE';
 
 const toogleSwitch = () => ({
     type : TOOGLE_SWITCH
 });
-const increase = () => ({
+const increase = difference => ({
     type : INCREASE, difference
-})
+});
 const decrease = () => ({
     type : DECREASE
-})
+});
 
 const initalState = {
     toogle : false,
@@ -34,7 +34,7 @@ function reducer(state = initalState, action){
         case INCREASE:
             return{
                 ...state,
-                counter: state.counter + 1
+                counter: state.counter + action.difference
             };
         case DECREASE:
             return{
@@ -86,4 +86,10 @@ btnDecrease.onclick = () => {
 *   store : 리덕스에 적용을 하기 위해 스토어를 만듬(한개의 프로젝트에 한 개의 스토어를 넣을 수 있다)
 *   dispatch : 스토어의 내장함수 중 하나, 액션 객체를 파라미터로 넣어서 호출
 *   subscribe : 스토어의 내장함수 중하나, 상태가 업데이트가 될 때 마다 호출
+*
+*   redux의 3가지 규칙
+*   1. 단일 스토어 : 하나의 애플리캐이션 안에는 하나의 스토어!
+*   2. 읽기 전용 상태 + 불변성 유지 : 상태를 업데이트를 할 때는 기존 객체를 건드리지 않고 새로운 객체를 생성을 해 줘야 한다(불변성을 유지를 해야하는 이유 : 객체의 변화를 감지를 할 때 얕은 비교 검사를 해야함(효율성))
+*   3. 순수한 함수 : 리듀서 함수는 이전 상태와 액션 객체를 파리미터로 받음, 파라미터의 값 외에는 의존 X
 */
+
