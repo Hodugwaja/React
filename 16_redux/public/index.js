@@ -1,3 +1,5 @@
+import { createStore } from 'redux';
+
 const divToogle = document.querySelector('.toogle');
 const counter = document.querySelector('h1');
 const btnIncrease = document.querySelector('#increase');
@@ -43,6 +45,8 @@ function reducer(state = initalState, action){
             return state;
     }
 }
+
+const store = createStore(reducer);
 
 /*
 *   reducer : 변화를 일으키는 함수, 액션을 만들어서 발생을 시키면 리듀서가 현재 상태를 전달 받은 액션 개체 피라미터로 받아온다
