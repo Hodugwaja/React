@@ -8,3 +8,5 @@ const CSSModule = () => {
         </div>
     )
 }
+
+export default CSSModule;

@@ -1,5 +1,19 @@
-@import './styles/utils.scss';
+/*@import './styles/utils.scss';*/
+$red : #fa5252;
+$orange : #fd7e14;
+$yellow : #fcc419;
+$green : #40c057;
+$blue : #339af0;
+$indigio : #5c7cfa;
+$violet : #7950f2;
 
+// 믹스인 : 재사용되는 스타일 블록을 함수형으로 재사용할 수 있음
+
+@mixin square($size) {
+    $calculated : 32px * $size;
+    width : $calculated;
+    height: $calculated;
+}
 .SassComponent{
     display: flex;
     background : $oc-gray-2;
@@ -48,7 +62,7 @@
 }
 
 /*
-* SCSS : Syntactically Awsome style sheets(문법적으로 매우 멋있는 스타일시트)
+* Sass : Syntactically Awsome style sheets(문법적으로 매우 멋있는 스타일시트)
 * CSS 전처리기로 복잡한 작업을 쉽게 할 수 있도록 해주고, 스타일 코드의 재활용성을 높여 줄 뿐만 아니라 코드의 가독성을 높여 유지보수가 쉬워진다
 * TMI : 과거에는 .sass확장자로만 운영했지만 개발자들의 요청에 의해 현재는 .scss확장자도 나오게 되었다
 * 두 확장자는 서로 문법이 다르다. 자세한 내용은 .sass, .scss참고 바람
