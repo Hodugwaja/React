@@ -1,4 +1,4 @@
-import { createStore } from 'redux';
+import { createStore } from 'redux'; // 리덕스에서 해당 함수를 불러옴
 
 const divToogle = document.querySelector('.toogle');
 const counter = document.querySelector('h1');
@@ -47,6 +47,18 @@ function reducer(state = initalState, action){
 }
 
 const store = createStore(reducer);
+
+const render = () => { // 상태가 업데이트가 될 때마다 호출
+    const state = store.getState();
+    if(state.toggle){
+        divToogle.classList.add('active');
+    }else{
+        divToogle.classList.remove('active');
+    }
+    counter.innerText = state.counter;
+};
+
+render();
 
 /*
 *   reducer : 변화를 일으키는 함수, 액션을 만들어서 발생을 시키면 리듀서가 현재 상태를 전달 받은 액션 개체 피라미터로 받아온다
