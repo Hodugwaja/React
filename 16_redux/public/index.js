@@ -48,7 +48,7 @@ function reducer(state = initalState, action){
 
 const store = createStore(reducer);
 
-const render = () => { // 상태가 업데이트가 될 때마다 호출
+const render = () => { // 상태가 업데이트가 될 때마다 호출하는 역할
     const state = store.getState();
     if(state.toggle){
         divToogle.classList.add('active');
@@ -59,6 +59,10 @@ const render = () => { // 상태가 업데이트가 될 때마다 호출
 };
 
 render();
+
+store.subscribe(render); 
+// 상태가 바뀔때마다 render함수가 호출 되도록 할 예정
+// react-redux라는 라이브러리가 이 작업을 대신 할 수 있기 때문
 
 /*
 *   reducer : 변화를 일으키는 함수, 액션을 만들어서 발생을 시키면 리듀서가 현재 상태를 전달 받은 액션 개체 피라미터로 받아온다
