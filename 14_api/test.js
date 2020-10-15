@@ -29,6 +29,8 @@ increase(0, result => {
 * 콜백 안에 콜백을 넣어서 구현이 가능하지만 여러번 중첩되기 때문에 코드의 가독성이 나빠짐
 * === 콜백 지옥
 */
+
+/* promise
 function increase(number){
     const promise = new Promise((resolve, reject) => { // resolve : 성공, reject : 실패
         setTimeout(() => {
@@ -67,3 +69,39 @@ increase(0)
     .catch(e => { // 버그가 발생하면 .catch를 통해 알 수 있음
         console.log(e);
     });
+    */
+   function increase(number){
+    const promise = new Promise((resolve, reject) => { // resolve : 성공, reject : 실패
+        setTimeout(() => {
+            const result = number + 10;
+            if(result > 50){
+                const e = new Error("number is to big\n그리고 마르카는 귀엽습니다(?)");
+                return reject(e)
+            }
+            resolve(result);
+        }, 1000)
+    })
+    return promise
+}
+async function runTasks() {
+    try{
+        console.log("카나미 헤어져라");
+        let result = await increase(0);
+        console.log(result);
+        result = await increase(result);
+        console.log(result);
+        result = await increase(result);
+        console.log(result);
+        result = await increase(result);
+        console.log(result);
+        result = await increase(result);
+        console.log(result);
+        result = await increase(result);
+        console.log(result);
+        result = await increase(result);
+        
+    }catch(e){
+        console.log(e);
+    }
+}
+runTasks();
