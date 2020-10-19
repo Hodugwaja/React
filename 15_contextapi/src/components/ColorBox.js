@@ -9,7 +9,7 @@ const ColorBox = () => {
                     style = {{
                         width: '164px', 
                         height: '164px', 
-                        background : value.Color
+                        background : value.color
                     }}
                 />
             )}

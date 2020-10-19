@@ -1,10 +1,31 @@
-import { createContext } from 'react';
+import React, {createContext, useState} from 'react';
 
-const ColorContext = createContext({Color : 'black'});
+const ColorContext = createContext({
+    state : {color : 'black', subcolor : 'red'},
+    actions: {
+        setColor: () => {},
+        setSubcolor : () => {}
+    }
+});
+
+const ColorProvider = ({children}) => {
+    const [color, setColor] = useState('black'); //배열 비구조화 할당 문법
+    const [subcolor, setSubColor] = useState('red');
+    const value = {
+        state : {color, setColor},
+        actions : {subcolor, setSubColor}
+    };
+    return(
+        <ColorContext.Provider value = {value}>{children}</ColorContext.Provider>
+    )
+}
+
+// const ColorConsumer = ColorContext.Consumer
+const{Consumer : ColorConsumer} = ColorContext;
+
+export { ColorProvider,  ColorConsumer};
 
 export default ColorContext;
-
-
 /*
  *프로젝트 내의 환경설정, 사용자 정보와 같은 전역적으로 필요한 상태 관리할때 사용
  *
