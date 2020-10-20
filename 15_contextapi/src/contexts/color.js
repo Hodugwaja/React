@@ -10,17 +10,17 @@ const ColorContext = createContext({
 
 const ColorProvider = ({children}) => {
     const [color, setColor] = useState('black'); //배열 비구조화 할당 문법
-    const [subcolor, setSubColor] = useState('red');
+    const [subcolor, setSubcolor] = useState('red');
     const value = {
-        state : {color, setColor},
-        actions : {subcolor, setSubColor}
+        state : {color, subcolor},
+        actions: {setColor, setSubcolor}
     };
     return(
         <ColorContext.Provider value = {value}>{children}</ColorContext.Provider>
     )
 }
 
-// const ColorConsumer = ColorContext.Consumer
+// const colorConsumer = ColorContext.Consumer
 const{Consumer : ColorConsumer} = ColorContext;
 
 export { ColorProvider,  ColorConsumer};
